@@ -1,0 +1,26 @@
+CREATE database bikes;
+\c bikes;
+create table bikes();
+alter table bikes add bike_id SERIAL primary key;
+alter table bikes add type varchar(50) not null;
+alter table bikes add size int not null;
+alter table bikes add available boolean not null;
+alter table bikes alter COLUMN available SET DEFAULT TRUE;
+create table customers();
+alter table customers add customer_id SERIAL primary key;
+alter table customers add phone varchar(15) not null unique;
+alter table customers add name varchar(40) not null;
+create table rentals();
+alter table rentals  add customer_id int not null;
+ALTER TABLE rentals  ADD FOREIGN KEY(customer_id) REFERENCES customers(customer_id);
+alter table rentals  add bike_id int not null;
+ALTER TABLE rentals  ADD FOREIGN KEY(bike_id) REFERENCES bikes(bike_id);
+alter table rentals  add date_rented DATE not null DEFAULT NOW();
+alter table rentals  add date_returned DATE;
+insert into bikes (type, size) values ('Mountain', 27)
+insert into bikes (type, size) values ('Mountain', 27);
+insert into bikes (type, size) values ('Mountain', 28);
+insert into bikes (type, size) values ('Mountain', 29);
+insert into bikes (type, size) values ('Road', 27);
+insert into bikes (type, size) values ('Road', 28), ('Road', 29);
+insert into bikes (type, size) values ('BMX', 19), ('BMX', 20), ('BMX', 21);
